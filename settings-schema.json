@@ -1,0 +1,210 @@
+{"title": "settings"
+,"description": "JSON schema for paneled-outlier-explorer configuration"
+,"overview": "The most straightforward way to customize the Paneled Outlier Explorer is by using a configuration object whose properties describe the behavior and appearance of the chart. Since the Paneled Outlier Explorer is a Webcharts `chart` object, many default Webcharts settings are set in the [defaultSettings.js file](https://github.com/RhoInc/paneled-outlier-explorer/blob/master/src/defaultSettings.js) as [described below](#webcharts-specific-settings). Refer to the [Webcharts documentation](https://github.com/RhoInc/Webcharts/wiki/Chart-Configuration) for more details on these settings.\nIn addition to the standard Webcharts settings several custom settings not available in the base Webcharts library have been added to the Paneled Outlier Explorer to facilitate data mapping and other custom functionality. These custom settings are described in detail below. All defaults can be overwritten by users."
+,"version": "1.1.0"
+,"type": "object"
+,"properties":
+    {"measure_col":
+        {"type": "string"
+        ,"title": "Measure"
+        ,"description": "measure variable name"
+        ,"default": "TEST"
+        }
+    ,"time_cols":
+        {"type": "array"
+        ,"title": "Time"
+        ,"description": "an array of each time variable and associated metadata"
+        ,"defaultObject": 
+            [
+                {
+                    "value_col": "VISIT",
+                    "type": "ordinal",
+                    "order": null,
+                    "order_col": "VISITNUM",
+                    "label": "Visit",
+                    "rotate_tick_labels": true,
+                    "vertical_space": 75
+                },
+                {
+                    "value_col": "DY",
+                    "type": "linear",
+                    "order": null,
+                    "order_col": "DY",
+                    "label": "Study Day",
+                    "rotate_tick_labels": false,
+                    "vertical_space": 0
+                }
+            ]
+        ,"items":
+            {"type": "object"
+            ,"properties":
+                {"value_col":
+                    {"type": "string"
+                    ,"title": "Time variable name"
+                    ,"default": "VISIT"
+                    }
+                ,"type":
+                    {"type": "string"
+                    ,"title": "Time variable data type"
+                    ,"default": "ordinal"
+                    }
+                ,"label":
+                    {"type": "string"
+                    ,"title": "Time variable label"
+                    ,"default": "Visit"
+                    }
+                ,"order_col":
+                    {"type": "string"
+                    ,"title": "Time ordering variable"
+                    ,"default": "VISITNUM"
+                    }
+                ,"rotate_tick_labels":
+                    {"type": "boolean"
+                    ,"title": "Rotate x-axis tick labels?"
+                    ,"default": true
+                    }
+                ,"vertical_space":
+                    {"type": "number"
+                    ,"title": "X-axis vertical space"
+                    ,"default": 75
+                    }
+                }
+            }
+        }
+    ,"value_col":
+        {"type": "string"
+        ,"title": "Result"
+        ,"description": "result variable name"
+        ,"default": "STRESN"
+        }
+    ,"id_col":
+        {"type": "string"
+        ,"title": "Identifier"
+        ,"description": "identifier variable name"
+        ,"default": "USUBJID"
+        }
+    ,"unit_col":
+        {"type": "string"
+        ,"title": "Unit"
+        ,"description": "unit variable name"
+        ,"default": "STRESU"
+        }
+    ,"lln_col":
+        {"type": "string"
+        ,"title": "Lower Limit of Normal"
+        ,"description": "lower limit of normal variable name"
+        ,"default": "STNRLO"
+        }
+    ,"uln_col":
+        {"type": "string"
+        ,"title": "Upper Limit of Normal"
+        ,"description": "upper limit of normal variable name"
+        ,"default": "STNRHI"
+        }
+    ,"measures":
+        {"type": "array"
+        ,"title": "Measure list"
+        ,"description": "list of initially displayed measures"
+        ,"items":
+            {"type": "string"
+            }
+        }
+    ,"filters":
+        {"type": "array"
+        ,"title": "Filters"
+        ,"description": "an array of each filter variable and associated metadata"
+        ,"items":
+            {"type": "object"
+            ,"properties":
+                {"value_col":
+                    {"type": "string"
+                    ,"title": "Variable name"
+                    }
+                ,"label":
+                    {"type": "string"
+                    ,"title": "Variable label"
+                    }
+                }
+            }
+        }
+    ,"multiples_sizing":
+        {"type": "object"
+        ,"title": "Dimensions of small multiples"
+        ,"description": "width and height of small multiples"
+        ,"properties":
+            {"width":
+                {"type": "number"
+                ,"title": "Width"
+                ,"default": 350
+                }
+            ,"height":
+                {"type": "number"
+                ,"title": "Height"
+                ,"default": 175
+                }
+            }
+        }
+    ,"visits_without_data":
+        {"type": "boolean"
+        ,"title": "Display of visits without data"
+        ,"description": "toggles the display of visits with and without data"
+        ,"default": false
+        }
+    ,"unscheduled_visits":
+        {"type": "boolean"
+        ,"title": "Display of unscheduled visits"
+        ,"description": "toggles the display of unscheduled visits"
+        ,"default": false
+        }
+    ,"unscheduled_visit_pattern":
+        {"type": "string"
+        ,"title": "Unscheduled Visit Pattern"
+        ,"description": "a regular expression that identifies unscheduled visits"
+        ,"default": "/unscheduled|early termination/i"
+        }
+    ,"unscheduled_visits_values":
+        {"type": "array"
+        ,"title": "Unscheduled Visit List"
+        ,"description": "an array of strings that identify unscheduled visits; overrides unscheduled_visit_pattern"
+        ,"items":
+            {"type": "string"
+            }
+        }
+    ,"inliers":
+        {"type": "boolean"
+        ,"title": "Normal range inliers"
+        ,"description": "toggles the display of participants with entirely normal results within each measure"
+        ,"default": false
+        }
+    ,"normal_range_method":
+        {"type": "string"
+        ,"title": "Normal range method"
+        ,"description": "method for identifying the normal range"
+        ,"default": "LLN-ULN"
+        ,"enum":
+            ["None"
+            ,"LLN-ULN"
+            ,"Standard Deviation"
+            ,"Qunatiles"
+            ]
+        }
+    ,"normal_range_sd":
+        {"type": "number"
+        ,"title": "Number of standard deviations"
+        ,"description": "results less/greater than this the mean minus/plus this many standard deviations are outliers"
+        ,"default": 1.96
+        }
+    ,"normal_range_quantile_low":
+        {"type": "number"
+        ,"title": "Lower quantile"
+        ,"description": "results less than this quantile are outliers"
+        ,"default": 0.05
+        }
+    ,"normal_range_quantile_high":
+        {"type": "number"
+        ,"title": "Upper quantile"
+        ,"description": "results greater than this quantile are outliers"
+        ,"default": 0.95
+        }
+    }
+}
