@@ -43,3 +43,17 @@ More information is available in the project's [wiki](https://github.com/RhoInc/
 - [API](https://github.com/RhoInc/paneled-outlier-explorer/wiki/Configuration)
 - [Technical Documentation](https://github.com/RhoInc/paneled-outlier-explorer/wiki/Technical-Documentation) 
 - [Data Guidelines](https://github.com/RhoInc/paneled-outlier-explorer/wiki/Data-Guidelines)
+
+## P004 nextgen functional requirements status
+
+This section tracks the nextgen Chart.js spike against the legacy wiki requirements. The current spike is intentionally partial; unmet items become migration backlog before any replacement release.
+
+| Requirement area | Legacy requirement summary | Spike status |
+|---|---|---|
+| X-axis filter | Choose study day, visit number, or visit display. | Partial: VISITN/VISIT/DY selector implemented when data are present. |
+| Inlier count | Show count of participants/records hidden as normal-range inliers. | Partial: inlier record counts shown per panel. |
+| View inliers | Toggle display of normal-range inliers. | Partial: show-inliers checkbox implemented. |
+| Normal-range controls | Change normal-range method and update panels/counts. | Partial: LLN/ULN vs None implemented. |
+| Paneled measures | Render multiple measure panels. | Partial: three measure panels implemented. |
+| Listing/export | Navigate/export linked listing. | Not started. |
+| Regression coverage | Validate x-axis, normal-range, inlier count, panel updates, listing, and export. | Not started; requires automated browser tests. |
